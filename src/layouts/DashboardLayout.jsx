@@ -4,17 +4,17 @@ import Navbar from "../components/Navbar";
 
 function DashboardLayout() {
   return (
-    <div className="flex">
+    <div className="bg-slate-100 min-h-screen flex">
 
       <Sidebar />
 
-      <div className="flex-1">
+      <div className="flex-1 flex flex-col">
 
         <Navbar />
 
-        <div className="p-6">
+        <main className="flex-1 p-8">
           <Outlet />
-        </div>
+        </main>
 
       </div>
 

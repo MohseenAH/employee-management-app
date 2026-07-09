@@ -31,36 +31,42 @@ function AddEmployee() {
       !employee.role ||
       !employee.salary
     ) {
-      alert("Please fill all fields");
+      alert("Please fill all fields.");
       return;
     }
 
     const employees =
       JSON.parse(localStorage.getItem("employees")) || [];
 
-    const newEmployee = {
+    employees.push({
       id: Date.now(),
       ...employee,
-    };
-
-    employees.push(newEmployee);
+    });
 
     localStorage.setItem(
       "employees",
       JSON.stringify(employees)
     );
 
-    alert("Employee Added Successfully!");
-
     navigate("/employees");
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex justify-center items-center">
-      <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-lg">
-        <h1 className="text-3xl font-bold mb-6">
+    <div className="space-y-8">
+
+      <div>
+
+        <h1 className="text-3xl font-bold text-slate-800">
           Add Employee
         </h1>
+
+        <p className="text-slate-500 mt-1">
+          Fill in the employee information below.
+        </p>
+
+      </div>
+
+      <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
 
         <EmployeeForm
           employee={employee}
@@ -68,7 +74,9 @@ function AddEmployee() {
           handleSubmit={handleSubmit}
           buttonText="Save Employee"
         />
+
       </div>
+
     </div>
   );
 }
