@@ -115,7 +115,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
 
       {/* Navigation */}
 
-      <nav className="flex-1 space-y-2 px-4 py-6">
+      <nav className="flex-1 overflow-y-auto px-4 py-6 space-y-2 scrollbar-thin scrollbar-thumb-blue-600 scrollbar-track-transparent">
         {menu.map((item) => {
           const Icon = item.icon;
 

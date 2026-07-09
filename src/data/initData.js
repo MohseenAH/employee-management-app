@@ -1,10 +1,18 @@
 import dummyEmployees from "./dummyEmployees";
+import dummyAttendance from "./dummyAttendance";
 
 export function initializeData() {
   if (!localStorage.getItem("employees")) {
     localStorage.setItem(
       "employees",
       JSON.stringify(dummyEmployees)
+    );
+  }
+
+  if (!localStorage.getItem("attendance")) {
+    localStorage.setItem(
+      "attendance",
+      JSON.stringify(dummyAttendance)
     );
   }
 
@@ -56,10 +64,6 @@ export function initializeData() {
         },
       ])
     );
-  }
-
-  if (!localStorage.getItem("attendance")) {
-    localStorage.setItem("attendance", JSON.stringify([]));
   }
 
   if (!localStorage.getItem("leaves")) {

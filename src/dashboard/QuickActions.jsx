@@ -26,19 +26,19 @@ const actions = [
   },
   {
     title: "Departments",
-    description: "Coming Soon",
+    description: "Manage departments",
     icon: Building2,
     color: "bg-purple-600",
     hover: "hover:bg-purple-700",
-    path: "#",
+    path: "/departments",
   },
   {
-    title: "Reports",
-    description: "Coming Soon",
+    title: "Leave Management",
+    description: "Approve leave requests",
     icon: FileText,
     color: "bg-orange-500",
     hover: "hover:bg-orange-600",
-    path: "#",
+    path: "/leave-management",
   },
 ];
 

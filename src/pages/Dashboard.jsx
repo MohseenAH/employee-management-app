@@ -7,6 +7,7 @@ import RecentEmployees from "../dashboard/RecentEmployees";
 import QuickActions from "../dashboard/QuickActions";
 import DepartmentOverview from "../dashboard/DepartmentOverview";
 import ActivityCard from "../dashboard/ActivityCard";
+import AttendanceAnalytics from "../dashboard/AttendanceAnalytics";
 
 import {
   Users,
@@ -45,7 +46,9 @@ function Dashboard() {
   ).length;
 
   const departments = [
-    ...new Set(employees.map((emp) => emp.department)),
+    ...new Set(
+      employees.map((emp) => emp.department)
+    ),
   ].length;
 
   const stats = [
@@ -81,7 +84,6 @@ function Dashboard() {
 
   return (
     <div className="space-y-8">
-
       {/* Welcome Banner */}
 
       <WelcomeBanner
@@ -93,7 +95,6 @@ function Dashboard() {
       {/* Statistics */}
 
       <section className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
-
         {stats.map((item) => (
           <StatCard
             key={item.title}
@@ -104,22 +105,23 @@ function Dashboard() {
             color={item.color}
           />
         ))}
-
       </section>
 
-      {/* Bottom Section */}
+      {/* Dashboard Content */}
 
       <section className="grid grid-cols-1 gap-6 xl:grid-cols-12">
 
-        {/* Left */}
+        {/* Left Column */}
 
-        <div className="xl:col-span-8">
+        <div className="space-y-6 xl:col-span-8">
 
           <RecentEmployees employees={employees} />
 
+          <AttendanceAnalytics />
+
         </div>
 
-        {/* Right */}
+        {/* Right Column */}
 
         <div className="space-y-6 xl:col-span-4">
 
@@ -129,12 +131,10 @@ function Dashboard() {
             employees={employees}
           />
 
-          <ActivityCard />
 
         </div>
 
       </section>
-
     </div>
   );
 }
