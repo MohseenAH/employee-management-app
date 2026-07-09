@@ -1,8 +1,19 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import {
+  Mail,
+  Lock,
+  Eye,
+  EyeOff,
+  Building2,
+  ArrowRight,
+} from "lucide-react";
+import AuthLayout from "../components/AuthLayout";
 
 function Login() {
   const navigate = useNavigate();
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -47,60 +58,121 @@ function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="w-full max-w-md bg-white p-8 rounded-xl shadow-lg">
-        <h1 className="text-3xl font-bold text-center mb-2">
-          Employee Management
-        </h1>
+    <AuthLayout
+      title="Welcome Back"
+      subtitle="Login to your Employee Management account"
+      icon={<Building2 size={34} />}
+    >
+      <form
+        onSubmit={handleSubmit}
+        className="space-y-6"
+      >
+        {/* Email */}
 
-        <p className="text-center text-gray-500 mb-6">
-          Sign in to continue
-        </p>
+        <div>
+          <label className="mb-2 block text-sm font-medium text-slate-700">
+            Email Address
+          </label>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block mb-1 font-medium">Email</label>
+          <div className="relative">
+            <Mail
+              size={20}
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+            />
+
             <input
               type="email"
               name="email"
+              required
               value={formData.email}
               onChange={handleChange}
-              placeholder="Enter your email"
-              className="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="john@example.com"
+              className="w-full rounded-xl border border-slate-300 py-3 pl-12 pr-4 outline-none transition focus:border-transparent focus:ring-2 focus:ring-blue-500"
             />
           </div>
+        </div>
 
-          <div>
-            <label className="block mb-1 font-medium">Password</label>
+        {/* Password */}
+
+        <div>
+          <label className="mb-2 block text-sm font-medium text-slate-700">
+            Password
+          </label>
+
+          <div className="relative">
+            <Lock
+              size={20}
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+            />
+
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               name="password"
+              required
               value={formData.password}
               onChange={handleChange}
-              placeholder="Enter your password"
-              className="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="••••••••"
+              className="w-full rounded-xl border border-slate-300 py-3 pl-12 pr-12 outline-none transition focus:border-transparent focus:ring-2 focus:ring-blue-500"
             />
+
+            <button
+              type="button"
+              onClick={() =>
+                setShowPassword(!showPassword)
+              }
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-blue-600"
+            >
+              {showPassword ? (
+                <EyeOff size={20} />
+              ) : (
+                <Eye size={20} />
+              )}
+            </button>
           </div>
+        </div>
+
+        {/* Remember Me */}
+
+        <div className="flex items-center justify-between text-sm">
+          <label className="flex items-center gap-2 text-slate-600">
+            <input
+              type="checkbox"
+              className="rounded border-slate-300"
+            />
+            Remember me
+          </label>
 
           <button
-            type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700"
+            type="button"
+            className="font-medium text-blue-600 hover:text-blue-700"
           >
-            Login
+            Forgot Password?
           </button>
-        </form>
+        </div>
 
-        <p className="text-center mt-6">
-          Don't have an account?{" "}
-          <Link
-            to="/signup"
-            className="text-blue-600 font-semibold hover:underline"
-          >
-            Sign Up
-          </Link>
-        </p>
-      </div>
-    </div>
+        {/* Login Button */}
+
+        <button
+          type="submit"
+          className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-700 to-sky-500 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-blue-300"
+        >
+          Login
+
+          <ArrowRight size={18} />
+        </button>
+      </form>
+
+      <p className="mt-8 text-center text-slate-600">
+        Don't have an account?
+
+        <Link
+          to="/signup"
+          className="ml-2 font-semibold text-blue-600 hover:text-blue-700"
+        >
+          Create Account
+        </Link>
+      </p>
+    </AuthLayout>
   );
 }
 
